@@ -5,15 +5,11 @@ import requests
 from bs4 import BeautifulSoup
 import webbrowser
 
-sites_de_vaga = ["linkedin", "indeed", "glassdoor", "infojobs", "catho", "empregos", "jooble"]
-
 def buscar_vagas():
     # Query com o google Dork, recomendo usar nesse formato.
     vagas_texto = vaga_entry.get()
     localizacao = localizacao_entry.get()
     urls_indesejadas_texto = urls_indesejadas_entry.get()
-    excluir_sites_vagas = excluir_var.get()  # Verifica se a opção está marcada
-
 
     if not vagas_texto or not localizacao:
         messagebox.showwarning("Aviso", "Preencha os campos de vaga e localização!")
@@ -22,10 +18,6 @@ def buscar_vagas():
     # Listas preenchidas ou não pelo usuário
     vagas_desejadas = [vaga.strip() for vaga in vagas_texto.split(",")]
     urls_indesejadas = [url.strip() for url in urls_indesejadas_texto.split(",")]
-    
-    # Se o usuário quiser excluir sites de vagas, adiciona a lista padrão
-    if excluir_sites_vagas:
-        urls_indesejadas.extend(sites_de_vaga)
     try:
         urls_encontradas = set()
         for vaga in vagas_desejadas:
@@ -63,10 +55,6 @@ localizacao_entry.pack()
 tk.Label(root, text="Sites indesejados (separados por vírgula):").pack()
 urls_indesejadas_entry = tk.Entry(root, width=50)
 urls_indesejadas_entry.pack()
-
-excluir_var = tk.BooleanVar()
-excluir_checkbox = tk.Checkbutton(root, text="Excluir sites de vagas conhecidos (LinkedIn, Indeed, etc.)", variable=excluir_var)
-excluir_checkbox.pack()
 
 buscar_btn = tk.Button(root, text="Buscar Vagas", command=buscar_vagas)
 buscar_btn.pack(pady=10)
