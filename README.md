@@ -28,7 +28,7 @@ pip install requests beautifulsoup4 googlesearch-python
 ## ▶ Como Usar
 1. **Execute o script**
    ```bash
-   python buscador_vagas.py
+   python scraping.py
    ```
 2. **Preencha os campos**:
    - Cargo(s) desejado(s)
